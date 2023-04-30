@@ -1,0 +1,13 @@
+{
+    "Yes": "네",
+    "No": "아니오",
+    "Add": "추가",
+    "AddStore": "장바구니 추가",
+    "Cancel": "취소",
+    "AddCart": "장바구니 추가",
+    "AddCartInputHint": "예) 이마트",
+    "ItemDelete": "삭제할까요?",
+    "ItemInputHint": "물건명을 입력해 주세요.",
+    "ECDropDownEnum_Rename": "이름 변경",
+    "ECDropDownEnum_Delete": "삭제"
+}
