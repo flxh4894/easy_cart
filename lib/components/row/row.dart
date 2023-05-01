@@ -35,7 +35,7 @@ class EasyRow extends ConsumerWidget {
           radius: 10,
           showTitle: false,
           value: 100 - per,
-          color: EasyCartColorMap().gray.shade100,
+          color: EasyCartColorMap().gray.shade200,
         ),
       ];
     }

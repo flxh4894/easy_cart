@@ -1,5 +1,6 @@
 import 'package:easy_cart/components/scaffold.dart';
 import 'package:easy_cart/provider/home_provider.dart';
+import 'package:easy_cart/style/color.dart';
 import 'package:easy_cart/views/gnb/done_list.dart';
 import 'package:easy_cart/views/gnb/home.dart';
 import 'package:flutter/material.dart';
@@ -28,6 +29,7 @@ class RootContentPage extends ConsumerWidget {
         },
       ),
       bottomNavigationBar: BottomNavigationBar(
+        unselectedItemColor: EasyCartColorMap().gray.shade500,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
               icon: Icon(Icons.shopping_cart), label: '장바구니'),
