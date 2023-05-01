@@ -1,5 +1,3 @@
-import 'package:easy_cart/components/button/loading_page_button.dart';
-import 'package:easy_cart/components/title_panel.dart';
 import 'package:easy_cart/generated/l10n.dart';
 import 'package:easy_cart/main.dart';
 import 'package:easy_cart/model/store_model.dart';

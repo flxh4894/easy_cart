@@ -7,11 +7,14 @@ import 'package:easy_cart/style/color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
+const String googleAdsBox = "googleAdsCount";
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
+  MobileAds.instance.initialize();
 
   Hive.registerAdapter<StoreModel>(store());
   await Hive.openBox<StoreModel>(storeModelName);
@@ -19,6 +22,7 @@ void main() async {
   await Hive.openBox<StoreDetailModel>(storeDetailModelName);
   Hive.registerAdapter<StoreDetailList>(storeDetailList());
   await Hive.openBox<StoreDetailList>(storeDetailListName);
+  await Hive.openBox<int>(googleAdsBox);
 
   runApp(
     const ProviderScope(

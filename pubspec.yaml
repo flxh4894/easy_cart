@@ -45,6 +45,7 @@ dependencies:
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   fl_chart: ^0.62.0
+  google_mobile_ads: ^3.0.0
 
 
 dev_dependencies:

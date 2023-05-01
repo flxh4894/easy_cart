@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:easy_cart/components/modal/dropdown.dart';
 import 'package:easy_cart/main.dart';
 import 'package:easy_cart/model/store_model.dart';

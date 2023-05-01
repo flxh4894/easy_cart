@@ -1,7 +1,5 @@
 import 'dart:developer';
-
 import 'package:easy_cart/model/store_model.dart';
-import 'package:easy_cart/provider/detail_provider.dart';
 import 'package:easy_cart/util/hash.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
