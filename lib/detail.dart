@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:easy_cart/components/row/row_with_check.dart';
 import 'package:easy_cart/components/scaffold.dart';
@@ -125,6 +126,7 @@ class CtaRow extends ConsumerWidget {
 
   final TextEditingController c = TextEditingController();
   final StoreDetailProvider p;
+  final ValueNotifier<bool> keyboardFlag = ValueNotifier(false);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -160,17 +162,39 @@ class CtaRow extends ConsumerWidget {
                       contentPadding: const EdgeInsets.all(8),
                     ),
                     onEditingComplete: () => addItem(ref),
+                    onChanged: (value) {
+                      if (value.isEmpty) {
+                        keyboardFlag.value = false;
+                      } else {
+                        keyboardFlag.value = true;
+                      }
+                    },
                     keyboardType: TextInputType.text,
                   ),
                 ),
-                IconButton(
-                  padding: EdgeInsets.zero,
-                  icon: Icon(
-                    Icons.add_box,
-                    color: EasyCartColorMap().primary,
-                    size: 40,
-                  ),
-                  onPressed: () => addItem(ref),
+                ValueListenableBuilder<bool>(
+                  valueListenable: keyboardFlag,
+                  builder: (context, value, child) {
+                    return value
+                        ? IconButton(
+                            padding: EdgeInsets.zero,
+                            icon: Icon(
+                              Icons.arrow_upward,
+                              color: EasyCartColorMap().primary,
+                              size: 32,
+                            ),
+                            onPressed: () => addItem(ref),
+                          )
+                        : IconButton(
+                            padding: EdgeInsets.zero,
+                            icon: Icon(
+                              Icons.keyboard_arrow_down,
+                              color: EasyCartColorMap().gray.shade500,
+                              size: 32,
+                            ),
+                            onPressed: () => FocusScope.of(context).unfocus(),
+                          );
+                  },
                 ),
               ],
             ),
@@ -184,9 +208,7 @@ class CtaRow extends ConsumerWidget {
   void addItem(WidgetRef ref) {
     if (c.text.isEmpty) return;
 
-    ref.read(p.notifier).add(
-          StoreDetailModel(title: c.text),
-        );
+    ref.read(p.notifier).add(StoreDetailModel(title: c.text));
     listKey.currentState?.insertItem(0);
   }
 }
