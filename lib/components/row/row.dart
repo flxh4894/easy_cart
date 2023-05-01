@@ -71,14 +71,6 @@ class EasyRow extends ConsumerWidget {
             ),
           ),
         ),
-        // leading: CircleAvatar(
-        //   backgroundColor:
-        //       storeModel.isDone ? Colors.green : EasyCartColorMap().primary,
-        //   child: Text(
-        //     (idx + 1).toString(),
-        //     style: const TextStyle(color: Colors.white),
-        //   ),
-        // ),
         title: Text(
           storeModel.title,
           style: context.headline3!.copyWith(
@@ -93,11 +85,6 @@ class EasyRow extends ConsumerWidget {
         trailing: ECDropDown(
           store: storeModel,
         ),
-        // trailing: IconButton(
-        //   padding: EdgeInsets.zero,
-        //   onPressed: () {},
-        //   icon: const Icon(Icons.more_vert_outlined, size: 32),
-        // ),
       ),
     );
   }

@@ -70,6 +70,10 @@ class StoreDetailPage extends ConsumerWidget {
   }
 }
 
+///
+/// Store Detail Page
+///
+
 class _ProgressBar extends ConsumerWidget {
   const _ProgressBar({
     required this.p,

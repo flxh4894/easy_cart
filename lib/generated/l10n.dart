@@ -80,6 +80,16 @@ class L {
     );
   }
 
+  /// `변경`
+  String get Rename {
+    return Intl.message(
+      '변경',
+      name: 'Rename',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `장바구니 추가`
   String get AddStore {
     return Intl.message(

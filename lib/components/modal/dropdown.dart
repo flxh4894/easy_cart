@@ -83,7 +83,7 @@ class ECDropDown extends ConsumerWidget {
                               currentIdx, store.copyWith(title: c.text));
                           Navigator.pop(context);
                         },
-                        child: Text(L.current.Add),
+                        child: Text(L.current.Rename),
                       ),
                       TextButton(
                         onPressed: () => Navigator.pop(context),
