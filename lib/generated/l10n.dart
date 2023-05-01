@@ -90,6 +90,16 @@ class L {
     );
   }
 
+  /// `장보기 완료`
+  String get StoreDone {
+    return Intl.message(
+      '장보기 완료',
+      name: 'StoreDone',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `취소`
   String get Cancel {
     return Intl.message(

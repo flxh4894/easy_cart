@@ -1,5 +1,6 @@
 import 'package:easy_cart/components/scaffold.dart';
 import 'package:easy_cart/provider/home_provider.dart';
+import 'package:easy_cart/views/gnb/done_list.dart';
 import 'package:easy_cart/views/gnb/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -22,12 +23,16 @@ class RootContentPage extends ConsumerWidget {
       body: PageView(
         controller: _controller,
         children: ref.read(rootIndexProvider.notifier).rootContent,
+        onPageChanged: (value) {
+          ref.read(rootIndexProvider.notifier).changeIndex(value);
+        },
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.shopping_cart), label: '장바구니'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.download_done), label: '완료목록'),
         ],
         currentIndex: idx,
         onTap: (idx) {
@@ -43,8 +48,7 @@ class RootContentPage extends ConsumerWidget {
 class RootIndex extends _$RootIndex {
   final List<Widget> rootContent = [
     const HomePage(),
-    Center(child: Text('Search')),
-    Center(child: Text('Profile')),
+    const DoneListPage(),
   ];
 
   @override

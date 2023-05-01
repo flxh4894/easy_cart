@@ -32,6 +32,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "ItemDelete": MessageLookupByLibrary.simpleMessage("삭제할까요?"),
         "ItemInputHint": MessageLookupByLibrary.simpleMessage("물건명을 입력해 주세요."),
         "No": MessageLookupByLibrary.simpleMessage("아니오"),
+        "StoreDone": MessageLookupByLibrary.simpleMessage("장보기 완료"),
         "Yes": MessageLookupByLibrary.simpleMessage("네")
       };
 }

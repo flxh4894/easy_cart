@@ -1,6 +1,7 @@
 import 'package:easy_cart/generated/l10n.dart';
 import 'package:easy_cart/main.dart';
 import 'package:easy_cart/model/store_model.dart';
+import 'package:easy_cart/provider/detail_provider.dart';
 import 'package:easy_cart/provider/home_provider.dart';
 import 'package:easy_cart/style/color.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +34,6 @@ class ECDropDown extends ConsumerWidget {
       child: const Icon(Icons.more_vert_outlined, size: 32),
       itemBuilder: (BuildContext context) {
         return <String>[
-          store.title,
           ...ECDropDownEnum.values.map((e) => e.name),
         ].map((String value) {
           return PopupMenuItem<String>(
@@ -47,7 +47,7 @@ class ECDropDown extends ConsumerWidget {
           );
         }).toList();
       },
-      onSelected: (String newValue) {
+      onSelected: (String newValue) async {
         try {
           ECDropDownEnum temp = ECDropDownEnum.values
               .firstWhere((element) => element.name == newValue);
@@ -95,12 +95,46 @@ class ECDropDown extends ConsumerWidget {
               );
               break;
             case ECDropDownEnum.delete:
-              ref.read(homeProvider.notifier).delete(currentIdx);
+              _deleteDialog(context, ref, currentIdx);
               break;
           }
         } catch (e) {
           return;
         }
+      },
+    );
+  }
+
+  // 삭제 Modal
+  Future<dynamic> _deleteDialog(
+      BuildContext context, WidgetRef ref, int currentIdx) {
+    return showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text(L.current.ItemDelete),
+          actions: [
+            TextButton(
+              onPressed: () {
+                // 스토어 지우기
+                ref.read(homeProvider.notifier).delete(currentIdx);
+                final childKey = store.childKey;
+                final p = storeDetailProvider(childKey: childKey).notifier;
+                // 스토어 상세 지우기
+                ref.read(p).delete();
+                Navigator.pop(context);
+              },
+              child: Text(L.current.Yes),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text(L.current.No),
+            ),
+          ],
+        );
       },
     );
   }

@@ -71,6 +71,12 @@ class StoreDetail extends _$StoreDetail {
     state = updateList;
   }
 
+  // State 삭제
+  void delete() {
+    log("삭제 진행합니다. $childKey");
+    box.delete(childKey);
+  }
+
   // State 추가
   void insert(int len, StoreDetailModel m) {
     final updateList = [...state];

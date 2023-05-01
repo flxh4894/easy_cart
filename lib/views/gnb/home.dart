@@ -1,7 +1,7 @@
+import 'dart:developer';
+
 import 'package:easy_cart/components/row/row.dart';
 import 'package:easy_cart/detail.dart';
-import 'package:easy_cart/generated/l10n.dart';
-import 'package:easy_cart/model/store_model.dart';
 import 'package:easy_cart/provider/home_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -19,64 +19,48 @@ class HomePage extends ConsumerWidget {
       children: [
         Expanded(
           child: ReorderableListView(
-            onReorder: (oldIndex, newIndex) =>
-                ref.read(homeProvider.notifier).onReorder(oldIndex, newIndex),
-            children: ref
-                .watch(homeProvider)
-                .map(
-                  (storeModel) => GestureDetector(
-                    key: Key(storeModel.toString()),
-                    behavior: HitTestBehavior.translucent,
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => StoreDetailPage(
-                            model: storeModel,
-                          ),
+            onReorder: (oldIndex, newIndex) {
+              // reorder index 때문에 해당 조건 태워야함.
+              if (oldIndex < newIndex) {
+                newIndex -= 1;
+              }
+
+              // 실제 homeprovider에 있는 인덱스 값을 잡아야 함.
+              final oldModel = ref.read(storeListProvider)[oldIndex];
+              final newModel = ref.read(storeListProvider)[newIndex];
+
+              oldIndex = ref.read(homeProvider).indexOf(oldModel);
+              newIndex = ref.read(homeProvider).indexOf(newModel);
+
+              ref.read(homeProvider.notifier).onReorder(oldIndex, newIndex);
+            },
+            children: ref.watch(storeListProvider).map(
+              (storeModel) {
+                final int idx = ref.read(homeProvider).indexOf(storeModel);
+                return GestureDetector(
+                  key: Key(storeModel.toString()),
+                  behavior: HitTestBehavior.translucent,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => StoreDetailPage(
+                          model: storeModel,
+                          stateIndex: idx,
                         ),
-                      );
-                    },
-                    child: EasyRow(
-                      storeModel: storeModel,
-                      idx: ref.read(homeProvider).indexOf(storeModel),
-                    ),
+                      ),
+                    );
+                  },
+                  child: EasyRow(
+                    storeModel: storeModel,
+                    idx: idx,
                   ),
-                )
-                .toList(),
+                );
+              },
+            ).toList(),
           ),
         ),
       ],
-    );
-  }
-
-  // Delete Modal
-  Future<dynamic> _showDeleteModal(
-      BuildContext context, WidgetRef ref, StoreModel e) {
-    return showDialog(
-      barrierDismissible: false,
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: Text(L.current.ItemDelete),
-          actions: [
-            TextButton(
-              onPressed: () {
-                final currentIdx = ref.read(homeProvider).indexOf(e);
-                ref.read(homeProvider.notifier).delete(currentIdx);
-                Navigator.pop(context);
-              },
-              child: Text(L.current.Yes),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: Text(L.current.No),
-            ),
-          ],
-        );
-      },
     );
   }
 }

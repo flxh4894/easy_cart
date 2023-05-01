@@ -7,6 +7,7 @@ import 'package:easy_cart/main.dart';
 import 'package:easy_cart/model/store_detail_model.dart';
 import 'package:easy_cart/model/store_model.dart';
 import 'package:easy_cart/provider/detail_provider.dart';
+import 'package:easy_cart/provider/home_provider.dart';
 import 'package:easy_cart/style/color.dart';
 import 'package:easy_cart/util/hash.dart';
 import 'package:flutter/material.dart';
@@ -21,10 +22,12 @@ GlobalKey<AnimatedListState> listKey = GlobalKey<AnimatedListState>();
 class StoreDetailPage extends ConsumerWidget {
   const StoreDetailPage({
     required this.model,
+    required this.stateIndex,
     super.key,
   });
 
   final StoreModel model;
+  final int stateIndex;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -32,6 +35,15 @@ class StoreDetailPage extends ConsumerWidget {
     final list = ref.watch(p);
     return EasyCartScaffold.back(
       title: model.title,
+      backActions: TextButton(
+        onPressed: () {
+          final m = ref.read(homeProvider)[stateIndex];
+          log(stateIndex.toString());
+          ref.read(homeProvider.notifier).doneStore(m);
+          Navigator.pop(context);
+        },
+        child: Text(L.current.StoreDone),
+      ),
       body: Padding(
         padding: const EdgeInsets.only(top: 16),
         child: Column(
@@ -62,7 +74,6 @@ class StoreDetailPage extends ConsumerWidget {
 class _ProgressBar extends ConsumerWidget {
   const _ProgressBar({
     required this.p,
-    super.key,
   });
 
   final StoreDetailProvider p;
@@ -86,12 +97,14 @@ class _ProgressBar extends ConsumerWidget {
                 color: EasyCartColorMap().gray.shade200,
               ),
             ),
-            Container(
+            AnimatedContainer(
+              duration: const Duration(milliseconds: 300),
+              curve: Curves.fastOutSlowIn,
               width: w * isDoneCnt,
               height: 10,
-              decoration: const BoxDecoration(
-                color: Colors.blue,
-                borderRadius: BorderRadius.all(Radius.circular(4)),
+              decoration: BoxDecoration(
+                color: EasyCartColorMap().primary,
+                borderRadius: const BorderRadius.all(Radius.circular(4)),
               ),
             ),
           ],
@@ -125,7 +138,7 @@ class CtaRow extends ConsumerWidget {
             width: double.infinity,
             padding: const EdgeInsets.symmetric(vertical: 8),
             alignment: Alignment.center,
-            color: Colors.blue,
+            color: EasyCartColorMap().primary,
             child: Text(
               "$current / $total",
               style:
@@ -152,9 +165,9 @@ class CtaRow extends ConsumerWidget {
                 ),
                 IconButton(
                   padding: EdgeInsets.zero,
-                  icon: const Icon(
+                  icon: Icon(
                     Icons.add_box,
-                    color: Colors.blue,
+                    color: EasyCartColorMap().primary,
                     size: 40,
                   ),
                   onPressed: () => addItem(ref),

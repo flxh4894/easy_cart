@@ -18,6 +18,7 @@ class EasyCartScaffold extends ConsumerWidget {
     this.resizeToAvoidBottomInset,
     this.isBack,
     this.title,
+    this.backActions,
   });
 
   final Color? backgroundColor;
@@ -27,6 +28,7 @@ class EasyCartScaffold extends ConsumerWidget {
   final bool? resizeToAvoidBottomInset;
   final bool? isBack;
   final String? title;
+  final Widget? backActions;
 
   bool get _isBack => isBack ?? false;
   final TextEditingController controller = TextEditingController();
@@ -37,6 +39,7 @@ class EasyCartScaffold extends ConsumerWidget {
     Widget? bottomNavigationBar,
     bool? resizeToAvoidBottomInset,
     String? title,
+    required Widget backActions,
   }) {
     return EasyCartScaffold(
       body: body,
@@ -45,6 +48,7 @@ class EasyCartScaffold extends ConsumerWidget {
       backgroundColor: backgroundColor,
       resizeToAvoidBottomInset: resizeToAvoidBottomInset,
       bottomNavigationBar: bottomNavigationBar,
+      backActions: backActions,
     );
   }
 
@@ -75,7 +79,9 @@ class EasyCartScaffold extends ConsumerWidget {
                     )
                   : null,
               actions: _isBack
-                  ? null
+                  ? [
+                      backActions ?? const Offstage(),
+                    ]
                   : [
                       TextButton(
                         onPressed: () {
