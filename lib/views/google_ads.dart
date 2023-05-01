@@ -113,7 +113,8 @@ class GoogleAds {
       },
       onAdFailedToShowFullScreenContent: (InterstitialAd ad, AdError error) {
         log('$ad onAdFailedToShowFullScreenContent: $error');
-        // ad.dispose();
+        _loadInterstitialAd();
+        ad.dispose();
       },
       onAdImpression: (InterstitialAd ad) => log('$ad impression occurred.'),
     );

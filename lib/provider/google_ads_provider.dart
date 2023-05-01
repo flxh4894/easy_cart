@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:easy_cart/main.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -25,7 +27,7 @@ class GoogleAdsCount extends _$GoogleAdsCount {
   /// 0 부터 시작이라 showCount - 1
   ///
   Future<bool> isShowAds() async {
-    final result = (state == showCount - 1);
+    final result = (state == (showCount - 1));
     return result;
   }
 
@@ -33,7 +35,7 @@ class GoogleAdsCount extends _$GoogleAdsCount {
   /// 광고 노출까지 카운트 업데이트
   ///
   Future<void> updateCount() async {
-    if (state == showCount) {
+    if (state == (showCount - 1)) {
       await box.put("count", 0);
       state = 0;
     } else {
