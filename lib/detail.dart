@@ -11,6 +11,7 @@ import 'package:easy_cart/style/color.dart';
 import 'package:easy_cart/util/hash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:lottie/lottie.dart';
 
 // animation list key
 GlobalKey<AnimatedListState> listKey = GlobalKey<AnimatedListState>();
@@ -32,6 +33,8 @@ class StoreDetailPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final p = StoreDetailProvider(childKey: model.childKey);
     final list = ref.watch(p);
+    final int doneCnt = list.where((element) => element.isDone).length;
+    final int itemCnt = list.length;
     return EasyCartScaffold.back(
       title: model.title,
       backActions: TextButton(
@@ -43,28 +46,38 @@ class StoreDetailPage extends ConsumerWidget {
         },
         child: Text(L.current.StoreDone),
       ),
-      body: Padding(
-        padding: const EdgeInsets.only(top: 16),
-        child: Column(
-          children: [
-            _ProgressBar(p: p),
-            Expanded(
-              child: AnimatedList(
-                key: listKey,
-                initialItemCount: ref.watch(p).length,
-                itemBuilder: (context, index, animation) {
-                  return ItemRow(
-                    animation: animation,
-                    storeDetailModel: list[index],
-                    p: p,
-                    key: Key(makeHash(model.hashCode)),
-                  );
-                },
-              ),
+      body: Stack(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 16),
+            child: Column(
+              children: [
+                _ProgressBar(p: p),
+                Expanded(
+                  child: AnimatedList(
+                    key: listKey,
+                    initialItemCount: ref.watch(p).length,
+                    itemBuilder: (context, index, animation) {
+                      return ItemRow(
+                        animation: animation,
+                        storeDetailModel: list[index],
+                        p: p,
+                        key: Key(makeHash(model.hashCode)),
+                      );
+                    },
+                  ),
+                ),
+                CtaRow(p: p),
+              ],
             ),
-            CtaRow(p: p),
-          ],
-        ),
+          ),
+          // Center(
+          //   child: Lottie.asset(
+          //     'assets/lottie/done.json',
+          //     repeat: false,
+          //   ),
+          // )
+        ],
       ),
     );
   }
