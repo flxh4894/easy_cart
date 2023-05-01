@@ -1,8 +1,7 @@
-import 'dart:developer';
-
 import 'package:easy_cart/components/row/row.dart';
 import 'package:easy_cart/detail.dart';
 import 'package:easy_cart/provider/home_provider.dart';
+import 'package:easy_cart/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -41,14 +40,10 @@ class HomePage extends ConsumerWidget {
                   key: Key(storeModel.toString()),
                   behavior: HitTestBehavior.translucent,
                   onTap: () {
-                    Navigator.push(
+                    Navigator.pushNamed(
                       context,
-                      MaterialPageRoute(
-                        builder: (context) => StoreDetailPage(
-                          model: storeModel,
-                          stateIndex: idx,
-                        ),
-                      ),
+                      RouteEnum.detail.path,
+                      arguments: StoreDetailArg(model: storeModel, index: idx),
                     );
                   },
                   child: EasyRow(

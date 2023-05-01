@@ -2,8 +2,8 @@ import 'package:easy_cart/gen/fonts.gen.dart';
 import 'package:easy_cart/generated/l10n.dart';
 import 'package:easy_cart/model/store_detail_model.dart';
 import 'package:easy_cart/model/store_model.dart';
+import 'package:easy_cart/routes/routes.dart';
 import 'package:easy_cart/style/color.dart';
-import 'package:easy_cart/views/gnb/root.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -135,7 +135,7 @@ class MyApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      home: RootContentPage(),
+      onGenerateRoute: mainRoutes,
     );
   }
 }

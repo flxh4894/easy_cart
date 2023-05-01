@@ -1,6 +1,4 @@
 import 'dart:developer';
-import 'dart:io';
-
 import 'package:easy_cart/components/row/row_with_check.dart';
 import 'package:easy_cart/components/scaffold.dart';
 import 'package:easy_cart/generated/l10n.dart';
@@ -211,4 +209,14 @@ class CtaRow extends ConsumerWidget {
     ref.read(p.notifier).add(StoreDetailModel(title: c.text));
     listKey.currentState?.insertItem(0);
   }
+}
+
+class StoreDetailArg {
+  const StoreDetailArg({
+    required this.model,
+    required this.index,
+  });
+
+  final StoreModel model;
+  final int index;
 }
