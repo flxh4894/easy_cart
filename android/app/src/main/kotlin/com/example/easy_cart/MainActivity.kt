@@ -1,4 +1,4 @@
-package com.example.easy_cart
+package com.polymorph.dev.easy_cart
 
 import io.flutter.embedding.android.FlutterActivity
 
