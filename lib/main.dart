@@ -4,8 +4,8 @@ import 'package:easy_cart/injection/main.dart';
 import 'package:easy_cart/model/store_detail_model.dart';
 import 'package:easy_cart/model/store_model.dart';
 import 'package:easy_cart/routes/new_routes.dart';
-import 'package:easy_cart/routes/routes.dart';
 import 'package:easy_cart/style/color.dart';
+import 'package:easy_cart/style/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -16,10 +16,6 @@ const String googleAdsBox = "googleAdsCount";
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SettingInjection.ensureInitialized();
-
-  // final uc = GetIt.I.get<CartUseCase>();
-  // await uc.addAndGetData();
-  // await uc.getSingle();
 
   await Hive.initFlutter();
   MobileAds.instance.initialize();
@@ -34,94 +30,20 @@ void main() async {
 
   runApp(
     const ProviderScope(
-      child: MyApp(),
+      child: EasyCartApp(),
     ),
   );
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class EasyCartApp extends StatelessWidget {
+  const EasyCartApp({super.key});
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
       title: 'Easy Cart',
-      theme: ThemeData(
-        primarySwatch: const MaterialColor(
-          0xFFFE4864,
-          <int, Color>{
-            50: Color(0xFFFCE4EC),
-            100: Color(0xFFF8BBD0),
-            200: Color(0xFFF48FB1),
-            300: Color(0xFFF06292),
-            400: Color(0xFFEC407A),
-            500: Color(0xFFFE4864),
-            600: Color(0xFFD81B60),
-            700: Color(0xFFC2185B),
-            800: Color(0xFFAD1457),
-            900: Color(0xFF880E4F),
-          },
-        ),
-        textTheme: TextTheme(
-          displayLarge: TextStyle(
-            color: EasyCartColorMap().gray.shade900,
-            fontFamilyFallback: const [FontFamily.pretendard],
-            fontSize: 24.0,
-            height: 28 / 24,
-            fontWeight: FontWeight.w700,
-          ),
-          displayMedium: TextStyle(
-            color: EasyCartColorMap().gray.shade900,
-            fontFamilyFallback: const [FontFamily.pretendard],
-            fontSize: 20.0,
-            height: 28 / 20,
-            fontWeight: FontWeight.w700,
-          ),
-          displaySmall: TextStyle(
-            color: EasyCartColorMap().gray.shade900,
-            fontFamilyFallback: const [FontFamily.pretendard],
-            fontSize: 18.0,
-            height: 20 / 18,
-            fontWeight: FontWeight.w700,
-          ),
-          headlineMedium: TextStyle(
-            color: EasyCartColorMap().gray.shade900,
-            fontFamilyFallback: const [FontFamily.pretendard],
-            fontSize: 16.0,
-            height: 20 / 16,
-            fontWeight: FontWeight.w700,
-          ),
-          titleMedium: TextStyle(
-            color: EasyCartColorMap().gray.shade900,
-            fontFamilyFallback: const [FontFamily.pretendard],
-            fontSize: 18.0,
-            fontWeight: FontWeight.w600,
-            height: 20 / 18,
-          ),
-          titleSmall: TextStyle(
-            color: EasyCartColorMap().gray.shade900,
-            fontFamilyFallback: const [FontFamily.pretendard],
-            fontSize: 16.0,
-            fontWeight: FontWeight.w600,
-            height: 24 / 16,
-          ),
-          bodyLarge: TextStyle(
-            color: EasyCartColorMap().gray.shade900,
-            fontFamilyFallback: const [FontFamily.pretendard],
-            fontSize: 16.0,
-            fontWeight: FontWeight.w500,
-            height: 24 / 16,
-          ),
-          bodyMedium: TextStyle(
-            color: EasyCartColorMap().gray.shade900,
-            fontFamilyFallback: const [FontFamily.pretendard],
-            fontSize: 12.0,
-            fontWeight: FontWeight.w400,
-            height: 16 / 12,
-          ),
-        ),
-      ),
+      theme: easyCartTheme,
       locale: const Locale('ko', 'KR'),
       supportedLocales: const [
         Locale('ko', 'KR'),
