@@ -1,7 +1,7 @@
 import 'package:easy_cart/components/modal/dropdown.dart';
-import 'package:easy_cart/main.dart';
 import 'package:easy_cart/model/store_model.dart';
 import 'package:easy_cart/style/color.dart';
+import 'package:easy_cart/style/theme.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

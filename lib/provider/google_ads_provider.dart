@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:easy_cart/main.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';

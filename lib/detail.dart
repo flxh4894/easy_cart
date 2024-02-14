@@ -2,16 +2,15 @@ import 'dart:developer';
 import 'package:easy_cart/components/row/row_with_check.dart';
 import 'package:easy_cart/components/scaffold.dart';
 import 'package:easy_cart/generated/l10n.dart';
-import 'package:easy_cart/main.dart';
 import 'package:easy_cart/model/store_detail_model.dart';
 import 'package:easy_cart/model/store_model.dart';
 import 'package:easy_cart/provider/detail_provider.dart';
 import 'package:easy_cart/provider/home_provider.dart';
 import 'package:easy_cart/style/color.dart';
+import 'package:easy_cart/style/theme.dart';
 import 'package:easy_cart/util/hash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:lottie/lottie.dart';
 
 // animation list key
 GlobalKey<AnimatedListState> listKey = GlobalKey<AnimatedListState>();

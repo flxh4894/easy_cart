@@ -52,6 +52,13 @@ dependencies:
   google_mobile_ads: ^3.0.0
   go_router: ^13.2.0
   logger: ^2.0.2+1
+  get_it: ^7.6.7
+
+  # Data repository
+  drift: ^2.15.0
+  sqlite3_flutter_libs: ^0.5.20
+  path_provider: ^2.1.2
+  path: ^1.8.3
 
 
 dev_dependencies:
@@ -62,7 +69,7 @@ dev_dependencies:
   
   # Build runner
   flutter_gen_runner:
-  build_runner: 
+  build_runner: ^2.4.8 
   freezed: 
   json_serializable: 
   riverpod_generator: 
@@ -72,6 +79,7 @@ dev_dependencies:
   riverpod_lint: ^2.3.9
   
   flutter_launcher_icons: 
+  drift_dev: ^2.15.0
 
 
 flutter_gen:

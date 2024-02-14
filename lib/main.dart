@@ -1,5 +1,6 @@
 import 'package:easy_cart/gen/fonts.gen.dart';
 import 'package:easy_cart/generated/l10n.dart';
+import 'package:easy_cart/injection/main.dart';
 import 'package:easy_cart/model/store_detail_model.dart';
 import 'package:easy_cart/model/store_model.dart';
 import 'package:easy_cart/routes/routes.dart';
@@ -13,6 +14,12 @@ import 'package:hive_flutter/hive_flutter.dart';
 const String googleAdsBox = "googleAdsCount";
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await SettingInjection.ensureInitialized();
+
+  // final uc = GetIt.I.get<CartUseCase>();
+  // await uc.addAndGetData();
+  // await uc.getSingle();
+
   await Hive.initFlutter();
   MobileAds.instance.initialize();
 
@@ -29,21 +36,6 @@ void main() async {
       child: MyApp(),
     ),
   );
-}
-
-extension BuildContextExtension on BuildContext {
-  TextTheme get textTheme => Theme.of(this).textTheme;
-
-  TextStyle? get headline1 => textTheme.displayLarge;
-  TextStyle? get headline2 => textTheme.displayMedium;
-  TextStyle? get headline3 => textTheme.displaySmall;
-  TextStyle? get headline4 => textTheme.headlineMedium;
-  TextStyle? get headline5 => textTheme.headlineSmall;
-  TextStyle? get headline6 => textTheme.titleLarge;
-  TextStyle? get subtitle1 => textTheme.titleMedium;
-  TextStyle? get subtitle2 => textTheme.titleSmall;
-  TextStyle? get bodyText1 => textTheme.bodyLarge;
-  TextStyle? get bodyText2 => textTheme.bodyMedium;
 }
 
 class MyApp extends StatelessWidget {
