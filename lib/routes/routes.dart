@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:easy_cart/detail.dart';
 import 'package:easy_cart/views/gnb/root.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 enum RouteEnum {
@@ -42,10 +45,21 @@ extension RouteEnumExtension on RouteEnum {
     }
   }
 
-  Route packRoute(RouteSettings settings) => transition.pack(
-        page: page(settings),
-        name: settings.name ?? '',
+  Route packRoute(RouteSettings settings) {
+    if (Platform.isAndroid) {
+      return MaterialPageRoute(
+        builder: (context) => page(settings),
       );
+    } else if (Platform.isIOS) {
+      return CupertinoPageRoute(
+        builder: (context) => page(settings),
+      );
+    } else {
+      return MaterialPageRoute(
+        builder: (context) => page(settings),
+      );
+    }
+  }
 }
 
 extension RouteEnumParser on String? {
