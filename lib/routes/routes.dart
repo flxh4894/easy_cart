@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:easy_cart/detail.dart';
-import 'package:easy_cart/views/gnb/root.dart';
+import 'package:easy_cart/views/root/root.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

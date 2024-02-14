@@ -1,3 +1,5 @@
+import 'package:easy_cart/gen/fonts.gen.dart';
+import 'package:easy_cart/style/color.dart';
 import 'package:flutter/material.dart';
 
 extension BuildContextExtension on BuildContext {
@@ -13,4 +15,11 @@ extension BuildContextExtension on BuildContext {
   TextStyle? get subtitle2 => textTheme.titleSmall;
   TextStyle? get bodyText1 => textTheme.bodyLarge;
   TextStyle? get bodyText2 => textTheme.bodyMedium;
+  TextStyle get subtitle4 => TextStyle(
+        color: EasyCartColorMap().gray.shade900,
+        fontFamilyFallback: const [FontFamily.pretendard],
+        fontSize: 12,
+        height: 16 / 12,
+        fontWeight: FontWeight.w600,
+      );
 }

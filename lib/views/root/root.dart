@@ -1,9 +1,10 @@
 import 'package:easy_cart/components/scaffold.dart';
 import 'package:easy_cart/provider/home_provider.dart';
 import 'package:easy_cart/style/color.dart';
-import 'package:easy_cart/views/gnb/done_list.dart';
-import 'package:easy_cart/views/gnb/home.dart';
+
 import 'package:easy_cart/views/google_ads.dart';
+import 'package:easy_cart/views/root/done_list.dart';
+import 'package:easy_cart/views/root/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
