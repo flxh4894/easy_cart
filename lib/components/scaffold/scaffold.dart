@@ -1,3 +1,4 @@
+import 'package:easy_cart/style/color.dart';
 import 'package:easy_cart/style/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -11,17 +12,22 @@ class EcScaffold extends ConsumerWidget {
     super.key,
     this.canPop = true,
     this.automaticallyImplyLeading = true,
+    this.resizeToAvoidBottomInset = false,
     this.appBarTitle,
     this.body,
     this.bottomNavigationBar,
+    this.appBarActions,
   });
 
   final bool canPop;
   final bool automaticallyImplyLeading;
+  final bool resizeToAvoidBottomInset;
   final String? appBarTitle;
 
   final Widget? body;
   final Widget? bottomNavigationBar;
+  final List<Widget>? appBarActions;
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return PopScope(
@@ -30,12 +36,18 @@ class EcScaffold extends ConsumerWidget {
         if (didPop) return;
       },
       child: Scaffold(
+        resizeToAvoidBottomInset: resizeToAvoidBottomInset,
         appBar: AppBar(
+          scrolledUnderElevation: 1,
+          surfaceTintColor: Colors.transparent,
+          shadowColor: EasyCartColorMap().gray.shade200,
           automaticallyImplyLeading: automaticallyImplyLeading,
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios_new_rounded),
-            onPressed: () => context.pop(),
-          ),
+          leading: !context.canPop()
+              ? null
+              : IconButton(
+                  icon: const Icon(Icons.arrow_back_ios_new_rounded),
+                  onPressed: () => context.pop(),
+                ),
           centerTitle: true,
           title: appBarTitle != null
               ? Text(
@@ -43,6 +55,7 @@ class EcScaffold extends ConsumerWidget {
                   style: context.bodyLargeBold,
                 )
               : null,
+          actions: appBarActions,
         ),
         body: body,
         bottomNavigationBar: bottomNavigationBar,

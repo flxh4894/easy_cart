@@ -10,14 +10,14 @@ import 'package:sqlite3_flutter_libs/sqlite3_flutter_libs.dart';
 part 'drift.g.dart';
 
 @DriftDatabase(tables: [
-  TodoItems,
   Carts,
+  CartItems,
 ])
 class AppDatabase extends _$AppDatabase {
   AppDatabase() : super(_openConnection());
 
   @override
-  int get schemaVersion => 2; // 이전 버전에서 1이었다면, 새 버전에서는 2로 증가
+  int get schemaVersion => 3; // 이전 버전에서 1이었다면, 새 버전에서는 2로 증가
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -25,8 +25,8 @@ class AppDatabase extends _$AppDatabase {
           return m.createAll(); // 데이터베이스 생성 시 모든 테이블 생성
         },
         onUpgrade: (Migrator m, int from, int to) async {
-          if (from < 2) {
-            await m.createTable(carts); // 'carts' 테이블 추가
+          if (from < 3) {
+            await m.createTable(cartItems); // 'cartItems' 테이블 추가
           }
         },
       );

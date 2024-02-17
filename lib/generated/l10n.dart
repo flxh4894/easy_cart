@@ -80,6 +80,26 @@ class L {
     );
   }
 
+  /// `수정`
+  String get Modify {
+    return Intl.message(
+      '수정',
+      name: 'Modify',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `삭제`
+  String get Delete {
+    return Intl.message(
+      '삭제',
+      name: 'Delete',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `확인`
   String get Confirm {
     return Intl.message(
@@ -187,6 +207,16 @@ class L {
       name: 'ECDropDownEnum_Delete',
       desc: '',
       args: [],
+    );
+  }
+
+  /// `아직 {count}개의 물건이 남았습니다.`
+  String Cart_Badege_Title(Object count) {
+    return Intl.message(
+      '아직 $count개의 물건이 남았습니다.',
+      name: 'Cart_Badege_Title',
+      desc: '',
+      args: [count],
     );
   }
 }
