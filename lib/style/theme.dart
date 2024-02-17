@@ -1,7 +1,6 @@
 import 'package:easy_cart/gen/fonts.gen.dart';
 import 'package:easy_cart/style/color.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 
 extension BuildContextExtension on BuildContext {
   TextTheme get textTheme => Theme.of(this).textTheme;
@@ -44,24 +43,55 @@ extension BuildContextExtension on BuildContext {
         height: 16 / 12,
         fontWeight: FontWeight.w700,
       );
+
+  TextStyle get label1 => TextStyle(
+        color: EasyCartColorMap().gray.shade900,
+        fontFamilyFallback: const [FontFamily.pretendard],
+        fontSize: 16,
+        height: 20 / 16,
+        fontWeight: FontWeight.w700,
+      );
+  TextStyle get label2 => TextStyle(
+        color: EasyCartColorMap().gray.shade900,
+        fontFamilyFallback: const [FontFamily.pretendard],
+        fontSize: 14,
+        height: 20 / 14,
+        fontWeight: FontWeight.w700,
+      );
+  TextStyle get label3 => TextStyle(
+        color: EasyCartColorMap().gray.shade900,
+        fontFamilyFallback: const [FontFamily.pretendard],
+        fontSize: 12,
+        height: 16 / 12,
+        fontWeight: FontWeight.w700,
+      );
+  TextStyle get underline1 => TextStyle(
+        color: EasyCartColorMap().gray.shade900,
+        fontFamilyFallback: const [FontFamily.pretendard],
+        fontSize: 14,
+        height: 16 / 14,
+        decoration: TextDecoration.underline,
+        fontWeight: FontWeight.w600,
+      );
 }
 
 final easyCartTheme = ThemeData(
-  primarySwatch: const MaterialColor(
-    0xFFFE4864,
-    <int, Color>{
-      50: Color(0xFFFCE4EC),
-      100: Color(0xFFF8BBD0),
-      200: Color(0xFFF48FB1),
-      300: Color(0xFFF06292),
-      400: Color(0xFFEC407A),
-      500: Color(0xFFFE4864),
-      600: Color(0xFFD81B60),
-      700: Color(0xFFC2185B),
-      800: Color(0xFFAD1457),
-      900: Color(0xFF880E4F),
-    },
+  primaryColor: EasyCartColorMap().primary,
+  colorScheme: ColorScheme(
+    brightness: Brightness.light,
+    primary: EasyCartColorMap().primary,
+    onPrimary: EasyCartColorMap().white,
+    secondary: EasyCartColorMap().white,
+    onSecondary: EasyCartColorMap().primary,
+    surface: EasyCartColorMap().surfaceColor,
+    onSurface: EasyCartColorMap().gray,
+    background: EasyCartColorMap().surfaceColor,
+    onBackground: EasyCartColorMap().gray,
+    error: EasyCartColorMap().system.error,
+    onError: Colors.white,
   ),
+  canvasColor: Colors.transparent,
+  scaffoldBackgroundColor: EasyCartColorMap().surfaceColor,
   textTheme: TextTheme(
     displayLarge: TextStyle(
       color: EasyCartColorMap().gray.shade900,

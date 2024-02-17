@@ -10,16 +10,21 @@ class TitlePanel extends StatelessWidget {
     required this.title,
     this.desc,
     this.descColor,
+    this.padding = const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
+    this.margin = EdgeInsets.zero,
   });
 
   final String title;
   final String? desc;
   final Color? descColor;
+  final EdgeInsetsGeometry padding;
+  final EdgeInsetsGeometry margin;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 16),
+      padding: padding,
+      margin: margin,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

@@ -80,6 +80,16 @@ class L {
     );
   }
 
+  /// `확인`
+  String get Confirm {
+    return Intl.message(
+      '확인',
+      name: 'Confirm',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `변경`
   String get Rename {
     return Intl.message(

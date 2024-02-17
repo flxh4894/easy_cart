@@ -1,6 +1,7 @@
 import 'package:easy_cart/injection/client.dart';
 import 'package:easy_cart/routes/transition.dart';
 import 'package:easy_cart/src/common/model/common.dart';
+import 'package:easy_cart/views/new_cart/main.dart';
 import 'package:easy_cart/views/root/cart.dart';
 import 'package:easy_cart/views/root/done.dart';
 import 'package:easy_cart/views/root/main.dart';
@@ -42,6 +43,13 @@ final routes = GoRouter(
         );
       },
     ),
+    goRouteSlideRight(
+      path: EcRoute.createCart.path,
+      name: EcRoute.createCart.name,
+      pageBuilder: (context, state) {
+        return AddNewCartPage();
+      },
+    ),
   ],
 );
 
@@ -54,7 +62,8 @@ enum EcRouteGroup {
 
 enum EcRoute {
   cart,
-  done;
+  done,
+  createCart;
 
   String get group {
     switch (this) {

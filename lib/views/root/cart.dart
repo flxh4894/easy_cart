@@ -1,11 +1,14 @@
-import 'package:easy_cart/components/border_container.dart';
+import 'package:easy_cart/routes/new_routes.dart';
 import 'package:easy_cart/style/color.dart';
-import 'package:easy_cart/style/theme.dart';
 import 'package:easy_cart/views/root/fragments/cart_row.dart';
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
+///
+/// Root Tab
+/// Cart
+///
 class CartMainPage extends ConsumerStatefulWidget {
   const CartMainPage({super.key});
 
@@ -25,9 +28,7 @@ class _CartMainPageState extends ConsumerState<CartMainPage> {
               Icons.add,
               color: EasyCartColorMap().primary,
             ),
-            onPressed: () {
-              // Navigator.of(context).pushNamed(EcRoute.done.path);
-            },
+            onPressed: () => context.push(EcRoute.createCart.path),
           ),
         ],
       ),
