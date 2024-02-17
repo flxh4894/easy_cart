@@ -14,12 +14,14 @@ class AddItemRow extends StatelessWidget {
     this.showSuffix = false,
     this.style,
     this.onTap,
+    this.onChange,
   });
 
   final bool autoFocus;
   final TextEditingController controller;
   final String label;
   final String? hint;
+  final Function(String v)? onChange;
 
   final bool readOnly;
   final TextStyle? style;
@@ -44,13 +46,18 @@ class AddItemRow extends StatelessWidget {
           style: style,
           onTap: onTap,
           hint: hint,
+          onChange: onChange,
+          suffixIconConstraints: const BoxConstraints(
+            minWidth: 20,
+            minHeight: 20,
+          ),
           suffix: showSuffix
               ? RotationTransition(
                   turns: const AlwaysStoppedAnimation(270 / 360),
                   child: Icon(
                     Icons.arrow_back_ios_new_outlined,
-                    size: 16,
                     color: EasyCartColorMap().gray.shade500,
+                    size: 16,
                   ),
                 )
               : null,

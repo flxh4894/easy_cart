@@ -1,3 +1,4 @@
+import 'package:easy_cart/provider/cart/cart.dart';
 import 'package:easy_cart/routes/new_routes.dart';
 import 'package:easy_cart/style/color.dart';
 import 'package:easy_cart/views/root/fragments/cart_row.dart';
@@ -36,25 +37,24 @@ class _CartMainPageState extends ConsumerState<CartMainPage> {
         width: double.infinity,
         height: double.infinity,
         padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: const SingleChildScrollView(
-          child: Wrap(
-            runSpacing: 16,
-            children: [
-              CartRow(
-                title: "다이소",
-              ),
-              CartRow(
-                title: "이마트",
-              ),
-              CartRow(
-                title: "홈플러스",
-              ),
-              CartRow(
-                title: "정육점",
-              ),
-            ],
-          ),
-        ),
+        child: ref.watch(cartListProvider).when(
+              data: (data) {
+                return SingleChildScrollView(
+                  child: Wrap(
+                    runSpacing: 16,
+                    children: [
+                      ...data.map(
+                        (cart) => CartRow(
+                          cart: cart,
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              },
+              error: (error, stackTrace) => const CircularProgressIndicator(),
+              loading: () => const CircularProgressIndicator(),
+            ),
       ),
     );
   }

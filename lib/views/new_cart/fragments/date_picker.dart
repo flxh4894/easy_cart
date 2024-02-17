@@ -2,7 +2,6 @@ import 'package:easy_cart/components/button/new_loading_page_button.dart';
 import 'package:easy_cart/generated/l10n.dart';
 import 'package:easy_cart/style/color.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 

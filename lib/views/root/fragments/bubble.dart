@@ -2,7 +2,9 @@ import 'package:easy_cart/style/color.dart';
 import 'package:flutter/material.dart';
 
 class ContractListStatusBubble extends CustomPainter {
-  ContractListStatusBubble();
+  ContractListStatusBubble({this.color});
+
+  final Color? color;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -14,7 +16,7 @@ class ContractListStatusBubble extends CustomPainter {
     return false;
   }
 
-  Color get bubbleColor => EasyCartColorMap().stateOverlay.pressed;
+  Color get bubbleColor => color ?? EasyCartColorMap().stateOverlay.pressed;
 
   drawBubble(Canvas canvas, Size size) {
     drawBubbleRect(canvas, size);

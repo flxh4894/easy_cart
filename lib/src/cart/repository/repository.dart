@@ -2,8 +2,8 @@ import 'package:easy_cart/src/clients/drift.dart';
 import 'package:get_it/get_it.dart';
 
 abstract class $CartRepository {
-  Future<void> add(int a);
-  Future<List<TodoItem>> getAll();
+  Future<void> add(CartsCompanion entity);
+  Future<List<Cart>> getAll();
   Future<TodoItem> get();
   Future<void> removeAll();
 }
@@ -12,17 +12,13 @@ class CartRepository extends $CartRepository {
   final db = GetIt.instance.get<AppDatabase>();
 
   @override
-  Future<void> add(int a) async {
-    await db.into(db.todoItems).insert(
-          TodoItemsCompanion.insert(
-              title: 'title :: Test4', content: 'Test Data'),
-        );
+  Future<void> add(CartsCompanion entity) async {
+    await db.into(db.carts).insert(entity);
   }
 
   @override
-  Future<List<TodoItem>> getAll() async {
-    return await db.select(db.todoItems).get()
-      ..where((element) => element.title == "title :: Test3");
+  Future<List<Cart>> getAll() async {
+    return await db.select(db.carts).get();
   }
 
   @override
