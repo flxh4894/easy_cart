@@ -48,8 +48,12 @@ class _CartMainPageState extends ConsumerState<CartMainPage> {
                   ),
                 );
               },
-              error: (error, stackTrace) => const CircularProgressIndicator(),
-              loading: () => const CircularProgressIndicator(),
+              error: (error, stackTrace) => const Center(
+                child: CircularProgressIndicator(),
+              ),
+              loading: () => const Center(
+                child: CircularProgressIndicator(),
+              ),
             ),
       ),
     );

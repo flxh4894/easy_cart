@@ -210,6 +210,16 @@ class L {
     );
   }
 
+  /// `최근 추가한 물품`
+  String get Recent_Keyword {
+    return Intl.message(
+      '최근 추가한 물품',
+      name: 'Recent_Keyword',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `아직 {count}개의 물건이 남았습니다.`
   String Cart_Badege_Title(Object count) {
     return Intl.message(

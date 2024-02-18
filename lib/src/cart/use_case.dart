@@ -1,10 +1,12 @@
 import 'package:easy_cart/src/cart/service.dart';
 import 'package:easy_cart/src/clients/drift.dart';
+import 'package:easy_cart/src/keyword/service.dart';
 import 'package:easy_cart/util/logger.dart';
 import 'package:get_it/get_it.dart';
 
 class CartUseCase {
   final service = GetIt.I.get<CartService>();
+  final keywordService = GetIt.I.get<KeywordService>();
 
   Future<void> add(CartsCompanion entity) async {
     final repo = service.repo;
@@ -101,7 +103,11 @@ class CartUseCase {
   Future<bool> addCartItem(CartItemsCompanion item) async {
     try {
       final repo = service.repo;
+      final keywordRepo = keywordService.repo;
       await repo.addItem(item);
+      await keywordRepo.add(
+        KeywordsCompanion.insert(keyword: item.title.value),
+      );
       return true;
     } catch (e) {
       logger.e(e.toString());

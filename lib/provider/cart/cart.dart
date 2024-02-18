@@ -1,8 +1,7 @@
 import 'package:easy_cart/src/cart/model/enum/action_mode.dart';
 import 'package:easy_cart/src/cart/use_case.dart';
 import 'package:easy_cart/src/clients/drift.dart';
-import 'package:easy_cart/src/keyword/use_case.dart';
-import 'package:easy_cart/util/logger.dart';
+
 import 'package:get_it/get_it.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -48,7 +47,6 @@ class CartList extends _$CartList {
 @riverpod
 class CartDetail extends _$CartDetail {
   final uc = GetIt.I.get<CartUseCase>();
-  final keywordUc = GetIt.I.get<KeywordUseCase>();
 
   @override
   FutureOr<List<CartItem>> build(int cartId) async {
@@ -87,13 +85,6 @@ class CartDetail extends _$CartDetail {
     await uc.addCartItem(item);
     final list = await uc.getDetailItems(cartId);
     list.sort((a, b) => a.isDone ? 1 : -1);
-
-    ///
-    /// Test
-    await keywordUc.add(title);
-    final test = await keywordUc.get();
-
-    logger.i(test);
 
     await updateRoot(
       list,

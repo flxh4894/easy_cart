@@ -15,6 +15,7 @@
     "ItemInputHint": "물건명을 입력해 주세요.",
     "ECDropDownEnum_Rename": "이름 변경",
     "ECDropDownEnum_Delete": "삭제",
+    "Recent_Keyword": "최근 추가한 물품",
     "Cart_Badege_Title": "아직 {count}개의 물건이 남았습니다.",
     "Cart_Badege_NoItem_Title": "물건을 추가해서 장보기를 시작해보세요!"
 }

@@ -26,13 +26,14 @@ class KeywordRepository extends $KeywordRepository {
             id, 
             keyword, 
             is_favorite, 
-            MAX(date) AS latest_date  
+            date,
+            MAX(id) AS latest_id
           FROM 
             keywords 
           GROUP BY 
             keyword 
           ORDER BY 
-            latest_date DESC
+            latest_id DESC
         """;
     final list = await db.customSelect(
       q + (limit != null ? ' LIMIT $limit' : ''),
@@ -45,7 +46,7 @@ class KeywordRepository extends $KeywordRepository {
             id: e.read<int>('id'),
             keyword: e.read<String>('keyword'),
             isFavorite: e.read<bool>('is_favorite'),
-            date: e.read<DateTime>('latest_date'),
+            date: e.read<DateTime>('date'),
           ),
         )
         .toList();

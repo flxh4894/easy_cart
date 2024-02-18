@@ -20,7 +20,7 @@ class KeywordUseCase {
   Future<List<Keyword>> get({int? limit}) async {
     try {
       final repo = service.repo;
-      return await repo.get(limit: 10);
+      return await repo.get(limit: limit);
     } catch (e) {
       logger.e(e.toString());
       return [];

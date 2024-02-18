@@ -40,6 +40,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "ItemInputHint": MessageLookupByLibrary.simpleMessage("물건명을 입력해 주세요."),
         "Modify": MessageLookupByLibrary.simpleMessage("수정"),
         "No": MessageLookupByLibrary.simpleMessage("아니오"),
+        "Recent_Keyword": MessageLookupByLibrary.simpleMessage("최근 추가한 물품"),
         "Rename": MessageLookupByLibrary.simpleMessage("변경"),
         "StoreDone": MessageLookupByLibrary.simpleMessage("장보기 완료"),
         "Yes": MessageLookupByLibrary.simpleMessage("네")
