@@ -25,6 +25,34 @@ class CartUseCase {
     }
   }
 
+  ///
+  /// 장보기 진행중 카트 목록 가져오기
+  ///
+  Future<List<Cart>> getIngList() async {
+    try {
+      final repo = service.repo;
+      final list = await repo.getCarts();
+      return list.where((element) => !element.isDone).toList();
+    } catch (e) {
+      logger.e(e.toString());
+      return [];
+    }
+  }
+
+  ///
+  /// 완료된 목록 가져오기
+  ///
+  Future<List<Cart>> getDoneList() async {
+    try {
+      final repo = service.repo;
+      final list = await repo.getCarts();
+      return list.where((element) => element.isDone).toList();
+    } catch (e) {
+      logger.e(e.toString());
+      return [];
+    }
+  }
+
   Future<void> updateCartCount({
     required int total,
     required int current,
@@ -35,6 +63,17 @@ class CartUseCase {
       total: total,
       current: current,
       cartId: cartId,
+    );
+  }
+
+  Future<void> updateCartFlag({
+    required bool isDone,
+    required int cartId,
+  }) async {
+    final repo = service.repo;
+    await repo.updateCart(
+      cartId: cartId,
+      isDone: isDone,
     );
   }
 

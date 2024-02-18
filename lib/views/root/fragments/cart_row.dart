@@ -50,7 +50,10 @@ class CartRow extends ConsumerWidget {
     return BorderContainer(
       onTap: () => context
           .push("${EcRoute.detail.path}/${cart.id}", extra: cart.title)
-          .then((value) async => ref.read(cartListProvider.notifier).refresh()),
+          .then((value) async {
+        await ref.read(cartListProvider.notifier).refresh();
+        await ref.read(doneCartListProvider.notifier).refresh();
+      }),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -126,6 +129,32 @@ class CartRow extends ConsumerWidget {
                         L.current.Cart_Badege_Title(
                           cart.totalCnt - cart.currentCnt,
                         ),
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyMedium!
+                            .copyWith(color: EasyCartColorMap().gray.shade500),
+                      ),
+                    ),
+                  );
+                }),
+              ],
+            ),
+          ),
+          Offstage(
+            offstage: cart.totalCnt != 0,
+            child: Column(
+              children: [
+                const SizedBox(height: 12),
+                LayoutBuilder(builder: (context, size) {
+                  return CustomPaint(
+                    painter: ContractListStatusBubble(
+                      color: EasyCartColorMap().benchmark.snp500,
+                    ),
+                    child: Container(
+                      padding: const EdgeInsets.all(8),
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        L.current.Cart_Badege_NoItem_Title,
                         style: Theme.of(context)
                             .textTheme
                             .bodyMedium!

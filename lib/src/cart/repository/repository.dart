@@ -5,9 +5,10 @@ import 'package:get_it/get_it.dart';
 abstract class $CartRepository {
   Future<void> add(CartsCompanion entity);
   Future<void> updateCart({
-    required int total,
-    required int current,
     required int cartId,
+    int? total,
+    int? current,
+    bool? isDone,
   });
   Future<void> deleteCart(int cartId);
   Future<List<Cart>> getCarts();
@@ -32,15 +33,17 @@ class CartRepository extends $CartRepository {
 
   @override
   Future<void> updateCart({
-    required int total,
-    required int current,
     required int cartId,
+    int? total,
+    int? current,
+    bool? isDone,
   }) async {
     final u = db.update(db.carts)..where((tbl) => tbl.id.equals(cartId));
     await u.write(
       CartsCompanion(
-        totalCnt: Value(total),
-        currentCnt: Value(current),
+        totalCnt: total == null ? const Value.absent() : Value(total),
+        currentCnt: current == null ? const Value.absent() : Value(current),
+        isDone: isDone == null ? const Value.absent() : Value(isDone),
       ),
     );
   }

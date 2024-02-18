@@ -219,6 +219,16 @@ class L {
       args: [count],
     );
   }
+
+  /// `물건을 추가해서 장보기를 시작해보세요!`
+  String get Cart_Badege_NoItem_Title {
+    return Intl.message(
+      '물건을 추가해서 장보기를 시작해보세요!',
+      name: 'Cart_Badege_NoItem_Title',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<L> {

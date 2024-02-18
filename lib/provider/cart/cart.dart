@@ -12,11 +12,11 @@ class CartList extends _$CartList {
 
   @override
   FutureOr<List<Cart>> build() async {
-    return await uc.getAll();
+    return await uc.getIngList();
   }
 
   Future<void> refresh() async {
-    state = AsyncData(await uc.getAll());
+    state = AsyncData(await uc.getIngList());
   }
 
   Future<void> deleteCart(int cartId) async {
@@ -37,6 +37,28 @@ class CartList extends _$CartList {
       current: doneCount,
       cartId: cartId,
     );
+
+    final flag = totalCount != 0 && totalCount == doneCount;
+    await uc.updateCartFlag(isDone: flag, cartId: cartId);
+  }
+}
+
+@Riverpod(keepAlive: true)
+class DoneCartList extends _$DoneCartList {
+  final uc = GetIt.I.get<CartUseCase>();
+
+  @override
+  FutureOr<List<Cart>> build() async {
+    return await uc.getDoneList();
+  }
+
+  Future<void> refresh() async {
+    state = AsyncData(await uc.getDoneList());
+  }
+
+  Future<void> deleteCart(int cartId) async {
+    await uc.deleteCart(cartId);
+    await refresh();
   }
 }
 

@@ -29,6 +29,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "AddCartInputHint": MessageLookupByLibrary.simpleMessage("예) 이마트"),
         "AddStore": MessageLookupByLibrary.simpleMessage("장바구니 추가"),
         "Cancel": MessageLookupByLibrary.simpleMessage("취소"),
+        "Cart_Badege_NoItem_Title":
+            MessageLookupByLibrary.simpleMessage("물건을 추가해서 장보기를 시작해보세요!"),
         "Cart_Badege_Title": m0,
         "Confirm": MessageLookupByLibrary.simpleMessage("확인"),
         "Delete": MessageLookupByLibrary.simpleMessage("삭제"),
