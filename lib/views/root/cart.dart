@@ -2,6 +2,7 @@ import 'package:easy_cart/components/scaffold/scaffold.dart';
 import 'package:easy_cart/generated/l10n.dart';
 import 'package:easy_cart/provider/cart/cart.dart';
 import 'package:easy_cart/routes/new_routes.dart';
+
 import 'package:easy_cart/views/root/fragments/cart_row.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

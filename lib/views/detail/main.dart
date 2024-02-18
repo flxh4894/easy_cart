@@ -4,6 +4,7 @@ import 'package:easy_cart/generated/l10n.dart';
 import 'package:easy_cart/provider/cart/cart.dart';
 import 'package:easy_cart/src/cart/model/enum/action_mode.dart';
 import 'package:easy_cart/style/theme.dart';
+import 'package:easy_cart/views/ads/banner.dart';
 import 'package:easy_cart/views/detail/fragments/input_area.dart';
 import 'package:easy_cart/views/detail/fragments/item_row.dart';
 import 'package:easy_cart/views/detail/fragments/progress_bar.dart';
@@ -89,6 +90,10 @@ class CartDetailPage extends ConsumerWidget {
                 );
               },
             ),
+            const BannerAds(
+              adUnitId: "ca-app-pub-3855736693913841/3318099722",
+            ),
+            const SizedBox(height: 4),
             Consumer(builder: (context, ref, _) {
               final m = ref.watch(detailActionModeProvider);
               return Offstage(

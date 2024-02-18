@@ -33,8 +33,14 @@
             android:value="2" />
 
         <!-- admob Test Android  -->
+        <!-- <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-3940256099942544~3347511713"/> -->
+
+        <!-- Admob Settings -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3940256099942544~3347511713"/>
+            android:value="ca-app-pub-3855736693913841~4934433726"/>
+
     </application>
 </manifest>
