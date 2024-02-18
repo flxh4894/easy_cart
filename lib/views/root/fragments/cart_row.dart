@@ -52,7 +52,6 @@ class CartRow extends ConsumerWidget {
           .push("${EcRoute.detail.path}/${cart.id}", extra: cart.title)
           .then((value) async {
         await ref.read(cartListProvider.notifier).refresh();
-        await ref.read(doneCartListProvider.notifier).refresh();
       }),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

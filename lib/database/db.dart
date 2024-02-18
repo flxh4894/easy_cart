@@ -16,3 +16,10 @@ class CartItems extends Table {
   TextColumn get title => text().withLength(min: 1, max: 32)();
   BoolColumn get isDone => boolean().withDefault(const Constant(false))();
 }
+
+class Keywords extends Table {
+  IntColumn get id => integer().autoIncrement()();
+  TextColumn get keyword => text().withLength(min: 1, max: 32)();
+  BoolColumn get isFavorite => boolean().withDefault(const Constant(false))();
+  DateTimeColumn get date => dateTime().withDefault(Constant(DateTime.now()))();
+}

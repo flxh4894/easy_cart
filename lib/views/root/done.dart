@@ -32,8 +32,9 @@ class _DoneMainPageState extends ConsumerState<DoneMainPage> {
         width: double.infinity,
         height: double.infinity,
         padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: ref.watch(doneCartListProvider).when(
+        child: ref.watch(cartListProvider).when(
               data: (data) {
+                data = data.where((element) => element.isDone).toList();
                 return SingleChildScrollView(
                   child: Wrap(
                     runSpacing: 8,

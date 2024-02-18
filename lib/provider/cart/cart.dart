@@ -1,6 +1,8 @@
 import 'package:easy_cart/src/cart/model/enum/action_mode.dart';
 import 'package:easy_cart/src/cart/use_case.dart';
 import 'package:easy_cart/src/clients/drift.dart';
+import 'package:easy_cart/src/keyword/use_case.dart';
+import 'package:easy_cart/util/logger.dart';
 import 'package:get_it/get_it.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -12,11 +14,11 @@ class CartList extends _$CartList {
 
   @override
   FutureOr<List<Cart>> build() async {
-    return await uc.getIngList();
+    return await uc.getAll();
   }
 
   Future<void> refresh() async {
-    state = AsyncData(await uc.getIngList());
+    state = AsyncData(await uc.getAll());
   }
 
   Future<void> deleteCart(int cartId) async {
@@ -43,28 +45,10 @@ class CartList extends _$CartList {
   }
 }
 
-@Riverpod(keepAlive: true)
-class DoneCartList extends _$DoneCartList {
-  final uc = GetIt.I.get<CartUseCase>();
-
-  @override
-  FutureOr<List<Cart>> build() async {
-    return await uc.getDoneList();
-  }
-
-  Future<void> refresh() async {
-    state = AsyncData(await uc.getDoneList());
-  }
-
-  Future<void> deleteCart(int cartId) async {
-    await uc.deleteCart(cartId);
-    await refresh();
-  }
-}
-
 @riverpod
 class CartDetail extends _$CartDetail {
   final uc = GetIt.I.get<CartUseCase>();
+  final keywordUc = GetIt.I.get<KeywordUseCase>();
 
   @override
   FutureOr<List<CartItem>> build(int cartId) async {
@@ -103,6 +87,13 @@ class CartDetail extends _$CartDetail {
     await uc.addCartItem(item);
     final list = await uc.getDetailItems(cartId);
     list.sort((a, b) => a.isDone ? 1 : -1);
+
+    ///
+    /// Test
+    await keywordUc.add(title);
+    final test = await keywordUc.get();
+
+    logger.i(test);
 
     await updateRoot(
       list,

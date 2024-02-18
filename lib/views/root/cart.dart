@@ -34,6 +34,7 @@ class _CartMainPageState extends ConsumerState<CartMainPage> {
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: ref.watch(cartListProvider).when(
               data: (data) {
+                data = data.where((element) => !element.isDone).toList();
                 return SingleChildScrollView(
                   child: Wrap(
                     runSpacing: 8,
