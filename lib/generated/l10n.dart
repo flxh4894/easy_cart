@@ -150,6 +150,26 @@ class L {
     );
   }
 
+  /// `장바구니 목록`
+  String get Cart_ING {
+    return Intl.message(
+      '장바구니 목록',
+      name: 'Cart_ING',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `완료 목록`
+  String get Cart_Done {
+    return Intl.message(
+      '완료 목록',
+      name: 'Cart_Done',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `장바구니 추가`
   String get AddCart {
     return Intl.message(

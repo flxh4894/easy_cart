@@ -10,9 +10,9 @@ extension GnbTabExtension on GnbTab {
   String get name {
     switch (this) {
       case GnbTab.cart:
-        return "Cart";
+        return "장바구니";
       case GnbTab.done:
-        return "Done";
+        return "완료목록";
     }
   }
 

@@ -22,6 +22,8 @@ class _CartMainPageState extends ConsumerState<CartMainPage> {
   @override
   Widget build(BuildContext context) {
     return EcScaffold(
+      appBarTitle: L.current.Cart_ING,
+      isCenterTitle: false,
       appBarActions: [
         TextButton(
           child: Text(L.current.AddCart),

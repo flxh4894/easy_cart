@@ -32,6 +32,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "Cart_Badege_NoItem_Title":
             MessageLookupByLibrary.simpleMessage("물건을 추가해서 장보기를 시작해보세요!"),
         "Cart_Badege_Title": m0,
+        "Cart_Done": MessageLookupByLibrary.simpleMessage("완료 목록"),
+        "Cart_ING": MessageLookupByLibrary.simpleMessage("장바구니 목록"),
         "Confirm": MessageLookupByLibrary.simpleMessage("확인"),
         "Delete": MessageLookupByLibrary.simpleMessage("삭제"),
         "ECDropDownEnum_Delete": MessageLookupByLibrary.simpleMessage("삭제"),

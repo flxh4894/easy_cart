@@ -22,12 +22,8 @@ class _DoneMainPageState extends ConsumerState<DoneMainPage> {
   @override
   Widget build(BuildContext context) {
     return EcScaffold(
-      appBarActions: [
-        TextButton(
-          child: Text(L.current.AddCart),
-          onPressed: () => context.push(EcRoute.createCart.path),
-        ),
-      ],
+      appBarTitle: L.current.Cart_Done,
+      isCenterTitle: false,
       body: Container(
         width: double.infinity,
         height: double.infinity,

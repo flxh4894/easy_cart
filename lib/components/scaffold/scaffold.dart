@@ -17,12 +17,14 @@ class EcScaffold extends ConsumerWidget {
     this.body,
     this.bottomNavigationBar,
     this.appBarActions,
+    this.isCenterTitle,
   });
 
   final bool canPop;
   final bool automaticallyImplyLeading;
   final bool resizeToAvoidBottomInset;
   final String? appBarTitle;
+  final bool? isCenterTitle;
 
   final Widget? body;
   final Widget? bottomNavigationBar;
@@ -48,7 +50,7 @@ class EcScaffold extends ConsumerWidget {
                   icon: const Icon(Icons.arrow_back_ios_new_rounded),
                   onPressed: () => context.pop(),
                 ),
-          centerTitle: true,
+          centerTitle: isCenterTitle ?? true,
           title: appBarTitle != null
               ? Text(
                   appBarTitle!,
