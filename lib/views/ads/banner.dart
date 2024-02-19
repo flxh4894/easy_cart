@@ -29,7 +29,6 @@ class _BannerAdsState extends ConsumerState<BannerAds> {
       size: AdSize.banner,
       listener: BannerAdListener(
         onAdLoaded: (ad) {
-          // logger.d('$ad loaded.');
           setState(() {
             _isLoaded = true;
           });
@@ -43,6 +42,12 @@ class _BannerAdsState extends ConsumerState<BannerAds> {
         onAdImpression: (Ad ad) {},
       ),
     )..load();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    loadAd();
   }
 
   @override
